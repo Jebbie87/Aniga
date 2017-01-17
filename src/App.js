@@ -43,6 +43,7 @@ class App extends Component {
         </div>
         <button onClick={this.animeButton}>Anime</button>
         <button onClick={this.mangaButton}>Manga</button>
+        {Math.floor((Date.now() / 1000) + 3600)}
         {this.state.anime ? <Anime clientToken={this.state.access_token} /> : null}
         {this.state.manga ? <Manga clientToken={this.state.access_token} /> : null}
       </div>
