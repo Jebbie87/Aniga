@@ -3,7 +3,8 @@ import './App.css';
 import axios from 'axios'
 import Anime from './containers/Anime.jsx'
 import Manga from './containers/Manga.jsx'
-
+import Register from './components/Register.jsx'
+import Login from './components/Login.jsx'
 
 class App extends Component {
   constructor(props) {
@@ -11,6 +12,8 @@ class App extends Component {
     this.state = {
       anime: false,
       manga: false,
+      registerForm: false,
+      loginForm: false,
       access_token: '',
     }
   }
@@ -27,11 +30,20 @@ class App extends Component {
   }
 
   animeButton = () => {
-    this.setState({anime: true, manga: false})
+    this.setState({anime: true, manga: false,})
   }
 
   mangaButton = () => {
-    this.setState({manga: true, anime: false})
+    this.setState({manga: true, anime: false,})
+  }
+
+  formOpen = (event) => {
+    console.log(event.target.name)
+    this.setState({[event.target.name]: true,})
+  }
+
+  formClose = (name) => {
+    this.setState({[name]: false,})
   }
 
   render() {
@@ -41,9 +53,12 @@ class App extends Component {
           <img src="http://images4.fanpop.com/image/photos/19600000/Bleach-Chibi-Banner-bleach-chibis-19651855-800-100.jpg" className="App-logo" alt="logo" />
           <h2>Welcome to my website</h2>
         </div>
+        <button onClick={this.formOpen} name="loginForm">Login</button>
+        <button onClick={this.formOpen} name="registerForm">Register</button>
         <button onClick={this.animeButton}>Anime</button>
         <button onClick={this.mangaButton}>Manga</button>
-        {Math.floor((Date.now() / 1000) + 3600)}
+        {this.state.registerForm ? <Register open={this.state.registerForm} close={this.formClose}/> : null}
+        {this.state.loginForm ? <Login open={this.state.loginForm} close={this.formClose} /> : null}
         {this.state.anime ? <Anime clientToken={this.state.access_token} /> : null}
         {this.state.manga ? <Manga clientToken={this.state.access_token} /> : null}
       </div>

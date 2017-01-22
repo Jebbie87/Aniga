@@ -18,7 +18,8 @@ export default class Test extends Component {
 
     axios.get(`https://anilist.co/api/browse/anime?access_token=${this.props.clientToken}`, {
       params: {
-        genres: "Ecchi",
+        genres: "Comedy",
+        year: "2016"
       }
     })
     .then((response) => {
