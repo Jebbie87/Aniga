@@ -17,7 +17,6 @@ export default class Manga extends Component {
       }
     })
     .then((response) => {
-      console.log(response.data)
       this.setState({manga: response.data})
     })
   }

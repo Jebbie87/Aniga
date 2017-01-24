@@ -32,7 +32,6 @@ export default class Register extends Component {
     return (
       <Modal
         isOpen={this.props.open}
-        onRequestClose={this.closeModal.bind(this, 'registerForm')}
         contentLabel='Register Form'
       >
         <form onSubmit={this.handleSubmit} className="registerForm">
@@ -41,9 +40,9 @@ export default class Register extends Component {
           <label>Email: <input onChange={this.handleChange} type="text" name="email"></input></label>
           <br/>
           <label>Password: <input onChange={this.handleChange} type="text" name="password"></input></label>
-          <button onClick={this.closeModal.bind(this, 'registerForm')}>Close</button>
           <button type="submit">Submit</button>
         </form>
+                  <button onClick={this.closeModal.bind(this, 'registerForm')}>Close</button>
       </Modal>
     )
   }

@@ -1,9 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import { render } from 'react-dom';
+// import Provider from 'react-redux'
+// import { createStore } from 'redux'
+import App from './containers/App';
 import './index.css';
+// import form from './reducers/index.js'
 
-ReactDOM.render(
-  <App />,
+// let store = createStore(form)
+
+render(
+    <App />,
   document.getElementById('root')
 );

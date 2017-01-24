@@ -18,7 +18,8 @@ export default class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.close(event.target.name)
+    this.props.fakeSubmit(this.state.email)
+    this.props.close('loginForm')
     //send to backend
   }
 
@@ -33,13 +34,13 @@ export default class Login extends Component {
         onRequestClose={this.closeModal.bind(this, 'loginForm')}
         contentLabel='Login Form'
       >
-        <form onSubmit={this.handleSubmit} className="loginForm">
+        <form onSubmit={this.handleSubmit}>
           <label>Email: <input onChange={this.handleChange} type="text" name="email"></input></label>
           <br/>
           <label>Password: <input onChange={this.handleChange} type="text" name="password"></input></label>
-          <button onClick={this.closeModal.bind(this, 'loginForm')} className="loginForm">Close</button>
           <button type="submit">Submit</button>
         </form>
+          <button onClick={this.closeModal.bind(this, 'loginForm')} className="loginForm">Close</button>
       </Modal>
     )
   }
