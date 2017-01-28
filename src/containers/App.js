@@ -1,27 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import axios from 'axios'
 import Anime from './Anime.jsx'
 import Manga from './Manga.jsx'
 import Register from '../components/Register.jsx'
 import Login from '../components/Login.jsx'
-
-const db = [
-  {
-    id: 1,
-    username: 'jebbie-dev',
-    email: 'jeff@test.com',
-    client_id: 'jebbie-czlct',
-    client_secret: 'QnlzF9MVPxBubyYDElOeLa',
-  },
-  {
-    id: 2,
-    username: 'jebbie',
-    email: 'jeff2@test.com',
-    client_id: 'jebbie-h5van',
-    client_secret: 'KTvjRDlbUWlFzrfDq5MeM3O3HYDmW'
-  }
-]
+import Search from '../components/Search.jsx'
+import Details from '../components/Details.jsx'
 
 class App extends Component {
   constructor(props) {
@@ -31,24 +16,27 @@ class App extends Component {
       manga: false,
       registerForm: false,
       loginForm: false,
+      searchForm: false,
+      imageClicked: false,
       access_token: '',
       currentUser: '',
+      clickedMedia: {},
+      searched: [],
     }
   }
 
-  // componentDidMount() {
-  //   axios.post('https://anilist.co/api/auth/access_token', {
-  //     grant_type: "client_credentials",
-  //     client_id: client_id,
-  //     client_secret: client_secret,
-  //   })
-  //   .then((response) => {
-  //     this.setState({access_token: response.data.access_token,})
-  //   })
-  // }
-
-  componentWillUpdate(newUser) {
-    console.log(newUser)
+  componentWillMount() {
+    axios.post('https://anilist.co/api/auth/access_token', {
+      grant_type: "client_credentials",
+      client_id: 'jebbie-czlct',
+      client_secret: 'QnlzF9MVPxBubyYDElOeLa',
+    })
+    .then((response) => {
+      this.setState({access_token: response.data.access_token,})
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
   animeButton = () => {
@@ -67,23 +55,12 @@ class App extends Component {
     this.setState({[name]: false,})
   }
 
-  handleFakeDBSubmit = (email) => {
-    db.forEach((person) => {
-      if (person.email === email) {
-        console.log(person.client_id, person.client_secret)
-        axios.post('https://anilist.co/api/auth/access_token', {
-          grant_type: "client_credentials",
-          client_id: person.client_id,
-          client_secret: person.client_secret,
-        })
-        .then((response) => {
-          this.setState({access_token: response.data.access_token,})
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-      }
-    })
+  updateSearched = (searched) => {
+    this.setState({searched: searched})
+  }
+
+  clickedImage(media) {
+    this.setState({imageClicked: true, clickedMedia: media})
   }
 
   render() {
@@ -93,15 +70,26 @@ class App extends Component {
           <img src="http://images4.fanpop.com/image/photos/19600000/Bleach-Chibi-Banner-bleach-chibis-19651855-800-100.jpg" className="App-logo" alt="logo" />
           <h1>Welcome to Aniga</h1>
         </div>
-        <button onClick={this.formOpen} name="loginForm">Login</button>
-        <button onClick={this.formOpen} name="registerForm">Register</button>
+        {/*<button onClick={this.formOpen} name="loginForm">Login</button>
+        <button onClick={this.formOpen} name="registerForm">Register</button>*/}
         <button onClick={this.animeButton}>Anime</button>
         <button onClick={this.mangaButton}>Manga</button>
-
+        <button onClick={this.formOpen} name="searchForm">Search</button>
+        <br/>
         {this.state.registerForm ? <Register open={this.state.registerForm} close={this.formClose}/> : null}
-        {this.state.loginForm ? <Login open={this.state.loginForm} close={this.formClose} fakeSubmit={this.handleFakeDBSubmit} /> : null}
+        {this.state.loginForm ? <Login open={this.state.loginForm} close={this.formClose} /> : null}
+        {this.state.searchForm ? <Search open={this.state.searchForm} close={this.formClose} clientToken={this.state.access_token} search={this.updateSearched}/> : null}
         {this.state.anime ? <Anime clientToken={this.state.access_token} /> : null}
         {this.state.manga ? <Manga clientToken={this.state.access_token} /> : null}
+        {this.state.searched ?
+          this.state.searched.map((media, index) => {
+            return (
+              <img key={index} src={media.image_url_lge} onClick={this.clickedImage.bind(this, media)} />
+            )
+          })
+          : null
+        }
+        {this.state.imageClicked ? <Details clicked={this.state.imageClicked} media={this.state.clickedMedia} /> : null}
       </div>
     );
   }
