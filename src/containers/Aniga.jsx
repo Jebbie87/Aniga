@@ -26,10 +26,13 @@ export default class Aniga extends Component {
   }
 
   componentDidMount() {
+    console.log("test1", process.env.NODE_ENV)
+    console.log('test2', process.env.ANILIST_API_KEY_CLIENT_ID)
+    console.log('test3', process.env.ANILIST_API_KEY_CLIENT_SECRET)
     axios.post('https://anilist.co/api/auth/access_token', {
       grant_type: 'client_credentials',
-      client_id: 'jebbie-czlct',
-      client_secret: 'QnlzF9MVPxBubyYDElOeLa',
+      client_id: process.env.ANILIST_API_KEY_CLIENT_ID,
+      client_secret: process.env.ANILIST_API_KEY_CLIENT_SECRET,
     })
     .then((response) => {
       this.setState({access_token: response.data.access_token,})

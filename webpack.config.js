@@ -1,5 +1,5 @@
 'use strict';
-
+require('dotenv').config()
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -27,7 +27,13 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
         new webpack.DefinePlugin({
-          'process.env.NODE_ENV': JSON.stringify('development')
+            'process.env': {
+                NODE_ENV: JSON.stringify('development'),
+                ANILIST_API_KEY_CLIENT_ID: JSON.stringify(process.env.ANILIST_API_KEY_CLIENT_ID),
+                ANILIST_API_KEY_CLIENT_SECRET: JSON.stringify(process.env.ANILIST_API_KEY_CLIENT_SECRET),
+                LEAGUE_API_KEY: JSON.stringify(process.env.LEAGUE_API_KEY),
+                STEAM_API_KEY: JSON.stringify(process.env.STEAM_API_KEY),
+            }
         })
     ],
     module: {

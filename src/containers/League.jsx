@@ -7,5 +7,3 @@ export default class League extends Component {
     )
   }
 }
-
-// LoL API KEY: RGAPI-b137d156-a2ec-42e5-8ac1-b5c32596d089

@@ -7,5 +7,3 @@ export default class Steam extends Component {
     )
   }
 }
-
-//Steam Web API key: 0B3FD59297AD775FF8236A4BA34FADD2
