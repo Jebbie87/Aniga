@@ -89,7 +89,7 @@ class App extends Component {
           })
           : null
         }
-        {this.state.imageClicked ? <Details clicked={this.state.imageClicked} media={this.state.clickedMedia} /> : null}
+        {this.state.imageClicked ? <Details open={this.state.imageClicked} close={this.formClose} media={this.state.clickedMedia} clientToken={this.state.access_token} /> : null}
       </div>
     );
   }
