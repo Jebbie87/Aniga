@@ -26,9 +26,6 @@ export default class Aniga extends Component {
   }
 
   componentDidMount() {
-    console.log("test1", process.env.NODE_ENV)
-    console.log('test2', process.env.ANILIST_API_KEY_CLIENT_ID)
-    console.log('test3', process.env.ANILIST_API_KEY_CLIENT_SECRET)
     axios.post('https://anilist.co/api/auth/access_token', {
       grant_type: 'client_credentials',
       client_id: process.env.ANILIST_API_KEY_CLIENT_ID,
@@ -43,10 +40,12 @@ export default class Aniga extends Component {
   }
 
   animeButton = () => {
+    this.props.media('anime')
     this.setState({anime: true, manga: false,})
   }
 
   mangaButton = () => {
+    this.props.media('manga')
     this.setState({manga: true, anime: false,})
   }
 
@@ -58,13 +57,16 @@ export default class Aniga extends Component {
     this.setState({[name]: false,})
   }
 
-  updateSearched = (searched) => {
+  updateSearched = (searched, type) => {
+    // need to fix it so that it updates properly
+    this.props.media(type)
     this.setState({searched: searched})
   }
 
   clickedImage(media) {
     this.setState({imageClicked: true, clickedMedia: media})
   }
+
 
   render() {
     return (

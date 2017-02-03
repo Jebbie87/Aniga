@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import Details from '../components/Details.jsx'
 
 export default class Manga extends Component {
 
@@ -7,13 +8,15 @@ export default class Manga extends Component {
     super(props)
     this.state = {
       manga: [],
+      imageClicked: false,
+      clickedManga: {},
     }
   }
 
   componentDidMount() {
     axios.get(`https://anilist.co/api/browse/manga?access_token=${this.props.clientToken}`, {
       params: {
-        genre: "Comedy"
+        genre: 'Comedy'
       }
     })
     .then((response) => {
@@ -21,15 +24,37 @@ export default class Manga extends Component {
     })
   }
 
+  clickedManga(manga) {
+    this.setState({imageClicked: true, clickedManga: manga})
+  }
+
+  closeModal = (name) => {
+    this.setState({[name]: false,})
+  }
+
   render() {
     return (
       <div>
         {
-          this.state.manga.map(function(manga, index) {
+          this.state.manga.map((manga, index) => {
             return (
-              <img key={index} role="presentation" src={manga.image_url_lge} />
+              <img
+                key={index}
+                role='presentation'
+                src={manga.image_url_lge}
+                onClick={this.clickedManga.bind(this, manga)}
+              />
             )
           })
+        }
+        {this.state.imageClicked ?
+          <Details
+            open={this.state.imageClicked}
+            close={this.closeModal}
+            media={this.state.clickedManga}
+            clientToken={this.props.clientToken}
+          />
+          : null
         }
       </div>
     )

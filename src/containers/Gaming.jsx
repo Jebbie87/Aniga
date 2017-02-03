@@ -9,15 +9,21 @@ export default class Gaming extends Component {
     steam: false,
   }
 
-  handleGaming(platform) {
-    platform === 'league' ? this.setState({league: true, steam: false,}) : this.setState({league: false, steam: true,})
+  leagueButton = () => {
+    this.props.media('league')
+    this.setState({league: true, steam: false,})
+  }
+
+  steamButton = () => {
+    this.props.media('steam')
+    this.setState({league: false, steam: true,})
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.handleGaming.bind(this, 'league')}>League of Legends</button>
-        <button onClick={this.handleGaming.bind(this, 'steam')}>Steam</button>
+        <button onClick={this.leagueButton}>League of Legends</button>
+        <button onClick={this.steamButton}>Steam</button>
         <h1>Gaming part of the website</h1>
         {this.state.league ? <League /> : <Steam />}
       </div>

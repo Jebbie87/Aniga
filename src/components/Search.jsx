@@ -37,7 +37,7 @@ export default class Search extends Component {
       }
     })
     .then((response) => {
-      this.props.search(response.data)
+      this.props.search(response.data, this.state.media)
     })
     this.props.close('searchForm')
   }

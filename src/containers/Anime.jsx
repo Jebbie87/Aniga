@@ -1,24 +1,21 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import Details from '../components/Details.jsx'
 
 export default class Test extends Component {
   constructor(props) {
     super(props)
     this.state = {
       anime: [],
-      image: '',
+      imageClicked: false,
+      clickedAnime: {},
     }
   }
 
   componentWillMount() {
-    // axios.get(`https://anilist.co/api/anime/21355?access_token=${this.props.clientToken}`)
-    //   .then((response) => {
-    //     this.setState({image: response.data.image_url_lge})
-    //   })
-
     axios.get(`https://anilist.co/api/browse/anime?access_token=${this.props.clientToken}`, {
       params: {
-        genres: "Comedy",
+        genres: 'Comedy',
         year: "2016"
       }
     })
@@ -27,16 +24,38 @@ export default class Test extends Component {
     })
   }
 
+  clickedAnime(anime) {
+    this.setState({imageClicked: true, clickedAnime: anime})
+  }
+
+  closeModal = (name) => {
+    this.setState({[name]: false,})
+  }
+
   render(){
     return (
       <div>
-      {
-        this.state.anime.map(function(anime, index) {
-          return (
-            <img key={index} role="presentation" src={anime.image_url_lge} />
-          )
-        })
-      }
+        {
+          this.state.anime.map((anime, index) => {
+            return (
+              <img
+                key={index}
+                role='presentation'
+                src={anime.image_url_lge}
+                onClick={this.clickedAnime.bind(this, anime)}
+              />
+            )
+          })
+        }
+        {this.state.imageClicked ?
+          <Details
+            open={this.state.imageClicked}
+            close={this.closeModal}
+            media={this.state.clickedAnime}
+            clientToken={this.props.clientToken}
+          />
+          : null
+        }
       </div>
     )
   }
