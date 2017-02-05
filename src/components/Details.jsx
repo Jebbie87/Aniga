@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Modal from 'react-modal'
 import axios from 'axios'
+import FontAwesome from 'react-fontawesome'
 
 export default class Details extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ export default class Details extends Component {
         {this.state.type === 'animeOrManga' ?
           <div>
             <img src={this.props.media.image_url_lge} />
-            <div>
+            <div className='anime-manga'>
               <p>Title: {this.state.currentMedia.title_english}</p>
               <p>Type: {this.state.currentMedia.type}</p>
               <p>Description: <span dangerouslySetInnerHTML={{__html: this.state.currentMedia.description}} /></p>
@@ -51,7 +52,10 @@ export default class Details extends Component {
           </div>
             : 'hello'
         }
-          <button onClick={this.closeModal.bind(this, 'imageClicked')}>Close</button>
+          <FontAwesome
+            name='times'
+            size='3x'
+          />
         </Modal>
       </div>
     )

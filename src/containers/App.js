@@ -8,17 +8,18 @@ export default class App extends Component {
     super(props)
     this.state = {
       media: {
-        anime: false,
+        anime: true,
+        // anime: false,
         manga: false,
       },
       gaming: {
         league: true,
         steam: false,
       },
-      // url: 'http://images4.fanpop.com/image/photos/19600000/Bleach-Chibi-Banner-bleach-chibis-19651855-800-100.jpg',
-      // title: 'Welcome to Aniga',
-      url: 'http://big-rooster.com/wp-content/uploads/2016/05/cropped-i_love_gaming_banner_by_drshmeb-d6p7hsq.jpg',
-      title: 'Welcome to the gaming part of the website',
+      url: 'http://images4.fanpop.com/image/photos/19600000/Bleach-Chibi-Banner-bleach-chibis-19651855-800-100.jpg',
+      title: 'Welcome to Aniga',
+      // url: 'http://big-rooster.com/wp-content/uploads/2016/05/cropped-i_love_gaming_banner_by_drshmeb-d6p7hsq.jpg',
+      // title: 'Welcome to the gaming part of the website',
     }
   }
 
