@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Champion from '../components/Champion.jsx'
 import Details from '../components/Details.jsx'
 
 export default class League extends Component {
@@ -41,11 +40,10 @@ export default class League extends Component {
     const imageBaseURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/'
     return (
       <div>
-        <h1>League part of the website</h1>
         {
           this.state.champions.map((champion, index) => {
             return (
-              <img key={index} src={imageBaseURL + champion.image.full} onClick={this.imageClicked.bind(this, champion)}/>
+              <img className='champion-icon' key={index} src={imageBaseURL + champion.image.full} onClick={this.imageClicked.bind(this, champion)}/>
             )
           })
         }

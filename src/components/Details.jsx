@@ -31,6 +31,7 @@ export default class Details extends Component {
   }
 
   render () {
+    console.log(this.props.media)
     return (
       <div>
         <Modal
@@ -38,6 +39,12 @@ export default class Details extends Component {
           onRequestClose={this.closeModal.bind(this, 'imageClicked')}
           contentLabel='mediaDetails'
         >
+        <FontAwesome
+          className='details-close-button'
+          name='times'
+          size='3x'
+          onClick={this.closeModal.bind(this, 'imageClicked')}
+        />
         {this.state.type === 'animeOrManga' ?
           <div>
             <img src={this.props.media.image_url_lge} />
@@ -45,19 +52,31 @@ export default class Details extends Component {
               <p>Title: {this.state.currentMedia.title_english}</p>
               <p>Type: {this.state.currentMedia.type}</p>
               <p>Description: <span dangerouslySetInnerHTML={{__html: this.state.currentMedia.description}} /></p>
-              {this.state.currentMedia.series_type === 'manga' ?
-              <p>Total Chapters: {this.state.currentMedia.total_chapters}</p>
-              : null}
+              {
+                this.state.currentMedia.series_type === 'manga' ?
+                  <p>Total Chapters: {this.state.currentMedia.total_chapters}</p>
+                : null
+              }
             </div>
           </div>
-            : 'hello'
+          :
+          <div>
+            <img
+              className='league-bg-picture'
+              src={`https://lolstatic-a.akamaihd.net/game-info/1.1.9/images/champion/backdrop/bg-${this.props.media.name.toLowerCase().replace(/\s+/, "")}.jpg`}
+            />
+            <h2 className='champion-title'>{this.props.media.name} {this.props.media.title}</h2>
+            <span className='champion-blurb' dangerouslySetInnerHTML={{__html: this.props.media.blurb}}></span>
+          {/*<p>Lore: <span dangerouslySetInnerHTML={{__html: this.props.media.lore}} /></p>*/}
+
+          </div>
         }
-          <FontAwesome
-            name='times'
-            size='3x'
-          />
         </Modal>
       </div>
     )
   }
 }
+
+
+//url('https://lolstatic-a.akamaihd.net/game-info/1.1.9/images/champion/backdrop/bg-ahri.jpg'
+

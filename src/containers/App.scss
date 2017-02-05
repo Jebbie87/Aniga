@@ -20,6 +20,12 @@
   margin: 1px;
 }
 
+.details-close-button {
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+
 .anime-manga {
   float: right;
   width: 67%;
@@ -30,6 +36,24 @@
   margin-right: 50px;
 }
 
+.champion-title {
+  text-align: center;
+}
+
+.champion-icon {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.league-bg-picture {
+  position: relative;
+  bottom: 20px;
+  float: left;
+  width: 50%;
+  height: 485px;
+  margin-right: 15px;
+}
+
 .steam-button {
   width: 9%;
 }
@@ -37,3 +61,4 @@
 .gaming-button {
   margin-left: 100px;
 }
+
