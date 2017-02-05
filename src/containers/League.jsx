@@ -1,38 +1,66 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Champion from '../components/Champion.jsx'
+import Details from '../components/Details.jsx'
 
 export default class League extends Component {
   constructor(props) {
     super(props)
     this.state = {
       apiKey: process.env.LEAGUE_API_KEY,
-      image: '',
-      sprite: '',
+      currentChampion: '',
+      imageClicked: false,
+      champions: [],
     }
   }
 
   componentWillMount() {
     axios.get(`https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?champData=all&api_key=${this.state.apiKey}`)
       .then((response) => {
-        console.log(response.data.data)
-        this.setState({
-          image: `http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/${response.data.data.Ahri.image.full}`,
-          sprite: `http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/${response.data.data.Ahri.image.sprite}`})
+        Object.keys(response.data.data).map((champion) => {
+          this.setState({
+            champions: [...this.state.champions, response.data.data[champion]]
+          })
+        })
+
       })
       .catch((error) => {
         console.log(error)
       })
   }
 
+  imageClicked(champion) {
+    this.setState({imageClicked: true, currentChampion: champion})
+  }
+
+  closeModal = (name) => {
+    this.setState({[name]: false,})
+  }
+
   render() {
+    const imageBaseURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/'
     return (
       <div>
-        <div style={{backgroundImage: 'url(https://lolstatic-a.akamaihd.net/game-info/1.1.9/images/champion/backdrop/bg-ahri.jpg)', width: '100%', height: '100%'}}>
-        </div>
         <h1>League part of the website</h1>
-        {/*<img src={this.state.image} />
-        <img src={this.state.sprite} />*/}
-      </div>
+        {
+          this.state.champions.map((champion, index) => {
+            return (
+              <img key={index} src={imageBaseURL + champion.image.full} onClick={this.imageClicked.bind(this, champion)}/>
+            )
+          })
+        }
+        {this.state.imageClicked ?
+          <Details
+            open={this.state.imageClicked}
+            close={this.closeModal}
+            media={this.state.currentChampion}
+            type='league'
+          />
+          : null
+        }
+        </div>
     )
   }
 }
+
+//http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Ahri.png

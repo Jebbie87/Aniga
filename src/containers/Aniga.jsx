@@ -64,7 +64,7 @@ export default class Aniga extends Component {
   }
 
   clickedImage(media) {
-    this.setState({imageClicked: true, clickedMedia: media})
+    this.setState({imageClicked: true, clickedMedia: media,})
   }
 
 

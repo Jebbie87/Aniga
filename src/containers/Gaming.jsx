@@ -22,9 +22,8 @@ export default class Gaming extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.leagueButton}>League of Legends</button>
-        <button onClick={this.steamButton}>Steam</button>
-        <h1>Gaming part of the website</h1>
+        <img src='../../public/LoL-button.png' className='league-button' onClick={this.leagueButton} />
+        <img src='../../public/steam-button.jpg' className='steam-button' onClick={this.steamButton} />
         {this.state.league ? <League /> : <Steam />}
       </div>
     )

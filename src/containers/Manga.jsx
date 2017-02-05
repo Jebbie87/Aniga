@@ -53,6 +53,7 @@ export default class Manga extends Component {
             close={this.closeModal}
             media={this.state.clickedManga}
             clientToken={this.props.clientToken}
+            type='animeOrManga'
           />
           : null
         }

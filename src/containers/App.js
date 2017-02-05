@@ -2,24 +2,23 @@ import React, { Component } from 'react';
 import './App.scss';
 import Aniga from './Aniga.jsx'
 import Gaming from './Gaming.jsx'
-// import axios from 'axios'
-
-//change banner according to whichever portion of the site user is on
 
 export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       media: {
-        anime: true,
+        anime: false,
         manga: false,
       },
       gaming: {
-        league: false,
+        league: true,
         steam: false,
       },
-      url: 'http://images4.fanpop.com/image/photos/19600000/Bleach-Chibi-Banner-bleach-chibis-19651855-800-100.jpg',
-      title: 'Welcome to Aniga',
+      // url: 'http://images4.fanpop.com/image/photos/19600000/Bleach-Chibi-Banner-bleach-chibis-19651855-800-100.jpg',
+      // title: 'Welcome to Aniga',
+      url: 'http://big-rooster.com/wp-content/uploads/2016/05/cropped-i_love_gaming_banner_by_drshmeb-d6p7hsq.jpg',
+      title: 'Welcome to the gaming part of the website',
     }
   }
 
@@ -57,7 +56,7 @@ export default class App extends Component {
         this.setState({
           media: {anime: false,},
           gaming: {league: true,},
-          url: 'http://lolesports.co.za/wp-content/uploads/2015/01/lol-banner.jpg',
+          url: 'http://big-rooster.com/wp-content/uploads/2016/05/cropped-i_love_gaming_banner_by_drshmeb-d6p7hsq.jpg',
           title: 'Welcome to the gaming part of the website',
         })
         break
@@ -68,15 +67,15 @@ export default class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <button onClick={this.handleBanner.bind(this, 'media')}>Anime/Manga</button>
-          <button onClick={this.handleBanner.bind(this, 'gaming')}>Gaming</button>
             <div>
               <img
                 src={this.state.url}
                 className='App-logo'
                 alt='logo'
               />
-              <h1>{this.state.title}</h1>
+              <h1 className='main-title'>{this.state.title}</h1>
+              <button onClick={this.handleBanner.bind(this, 'media')}>Anime/Manga</button>
+              <button className='gaming-button' onClick={this.handleBanner.bind(this, 'gaming')}>Gaming</button>
             </div>
           </div>
       {this.state.media.anime ? <Aniga media={this.handleBanner} /> : <Gaming media={this.handleBanner} />}

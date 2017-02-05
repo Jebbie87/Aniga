@@ -9,16 +9,26 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
   color: white;
 }
 
 .App-intro {
   font-size: large;
 }
-/*
-.register-form {
-  background-color: white;
-  width: 80%;
-}*/
 
+.main-title {
+  margin: 1px;
+}
+
+.league-button {
+  width: 10%;
+  margin-right: 50px;
+}
+
+.steam-button {
+  width: 9%;
+}
+
+.gaming-button {
+  margin-left: 100px;
+}

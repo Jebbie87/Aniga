@@ -53,6 +53,7 @@ export default class Test extends Component {
             close={this.closeModal}
             media={this.state.clickedAnime}
             clientToken={this.props.clientToken}
+            type='animeOrManga'
           />
           : null
         }
