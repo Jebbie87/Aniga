@@ -47,15 +47,26 @@ export default class Details extends Component {
         />
         {this.state.type === 'animeOrManga' ?
           <div>
-            <img src={this.props.media.image_url_lge} />
+            <img className='anime-manga-poster' src={this.props.media.image_url_lge} />
             <div className='anime-manga'>
-              <p>Title: {this.state.currentMedia.title_english}</p>
-              <p>Type: {this.state.currentMedia.type}</p>
-              <p>Description: <span dangerouslySetInnerHTML={{__html: this.state.currentMedia.description}} /></p>
+              <p><strong>Title: </strong> {this.state.currentMedia.title_english}</p>
+              <p><strong>Type: </strong>{this.state.currentMedia.type}</p>
+              <p><strong>Description: </strong><i dangerouslySetInnerHTML={{__html: this.state.currentMedia.description}} /></p>
               {
                 this.state.currentMedia.series_type === 'manga' ?
-                  <p>Total Chapters: {this.state.currentMedia.total_chapters}</p>
+                  <p><strong>Total Chapters: </strong>{this.state.currentMedia.total_chapters}</p>
                 : null
+              }
+              {
+                this.state.currentMedia.series_type === 'anime' ?
+                <div>
+                  <p><strong>Total Episodes: </strong>{this.state.currentMedia.total_episodes}</p>
+                  <iframe width="560" height="315"
+                    src={`https://www.youtube.com/embed/${this.state.currentMedia.youtube_id}`}>
+                  </iframe>
+                </div>
+                : null
+
               }
             </div>
           </div>

@@ -39,6 +39,7 @@ export default class Manga extends Component {
           this.state.manga.map((manga, index) => {
             return (
               <img
+                className='manga-poster'
                 key={index}
                 role='presentation'
                 src={manga.image_url_lge}

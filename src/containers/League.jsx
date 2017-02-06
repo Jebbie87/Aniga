@@ -16,7 +16,7 @@ export default class League extends Component {
   componentWillMount() {
     axios.get(`https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?champData=all&api_key=${this.state.apiKey}`)
       .then((response) => {
-        Object.keys(response.data.data).map((champion) => {
+        Object.keys(response.data.data).sort().map((champion) => {
           this.setState({
             champions: [...this.state.champions, response.data.data[champion]]
           })

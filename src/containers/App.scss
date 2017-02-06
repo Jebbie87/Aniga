@@ -28,7 +28,35 @@
 
 .anime-manga {
   float: right;
-  width: 67%;
+  width: 57%;
+  padding-right: 10%;
+}
+
+.anime-manga-poster {
+  width: 27%;
+  height: 100%;
+  float: left;
+}
+
+.anime-poster, .manga-poster, .search-poster {
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+.anime-button {
+  width: 15%;
+  float: left;
+  margin-left: 10%;
+}
+
+.manga-button {
+  margin-left: 8%;
+}
+
+.search-button {
+  width: 24%;
+  float: right;
+  margin-right: 5%;
 }
 
 .league-button {

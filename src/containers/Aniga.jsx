@@ -64,18 +64,33 @@ export default class Aniga extends Component {
   }
 
   clickedImage(media) {
+    console.log(media)
     this.setState({imageClicked: true, clickedMedia: media,})
   }
-
 
   render() {
     return (
       <div>
         {/*<button onClick={this.formOpen} name="loginForm">Login</button>
         <button onClick={this.formOpen} name="registerForm">Register</button>*/}
-        <button onClick={this.animeButton}>Anime</button>
-        <button onClick={this.mangaButton}>Manga</button>
-        <button onClick={this.formOpen} name="searchForm">Search</button>
+        <div>
+          <img
+            className='anime-button'
+            src='../../public/anime-button.jpg'
+            onClick={this.animeButton}
+          />
+          <img
+          className='manga-button'
+            src='../../public/manga-button.png'
+            onClick={this.mangaButton}
+          />
+          <img
+            className='search-button'
+            src='../../public/search-button1.jpg'
+            onClick={this.formOpen}
+            name='searchForm'
+          />
+        </div>
         <br/>
         {this.state.registerForm ? <Register open={this.state.registerForm} close={this.formClose}/> : null}
         {this.state.loginForm ? <Login open={this.state.loginForm} close={this.formClose} /> : null}
@@ -86,6 +101,7 @@ export default class Aniga extends Component {
           this.state.searched.map((media, index) => {
             return (
               <img
+                className='search-poster'
                 key={index}
                 src={media.image_url_lge}
                 onClick={this.clickedImage.bind(this, media)}
@@ -100,6 +116,7 @@ export default class Aniga extends Component {
             close={this.formClose}
             media={this.state.clickedMedia}
             clientToken={this.state.access_token}
+            type='animeOrManga'
           />
           : null
         }

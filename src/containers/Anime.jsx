@@ -39,6 +39,7 @@ export default class Test extends Component {
           this.state.anime.map((anime, index) => {
             return (
               <img
+                className='anime-poster'
                 key={index}
                 role='presentation'
                 src={anime.image_url_lge}

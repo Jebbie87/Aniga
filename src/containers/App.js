@@ -8,8 +8,8 @@ export default class App extends Component {
     super(props)
     this.state = {
       media: {
-        // anime: true,
-        anime: false,
+        anime: true,
+        // anime: false,
         manga: false,
       },
       gaming: {
