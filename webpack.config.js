@@ -48,6 +48,10 @@ module.exports = {
                 loader: 'json'
             },
             {
+            test: /\.css$/,
+            loader: 'style-loader!css-loader',
+            },
+            {
                 test: /\.jsx?$/,
                 loaders: ['babel'],
                 include: path.join(__dirname, 'src')

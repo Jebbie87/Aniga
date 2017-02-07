@@ -43,7 +43,11 @@ export default class League extends Component {
         {
           this.state.champions.map((champion, index) => {
             return (
-              <img className='champion-icon' key={index} src={imageBaseURL + champion.image.full} onClick={this.imageClicked.bind(this, champion)}/>
+              <div key={index} className='champion-icon-box'>
+                <img className='champion-icon' key={champion} src={imageBaseURL + champion.image.full} onClick={this.imageClicked.bind(this, champion)}/>
+                <br/>
+                <span className='champion-name'>{champion.name}</span>
+              </div>
             )
           })
         }

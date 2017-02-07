@@ -80,13 +80,13 @@ export default class Aniga extends Component {
             onClick={this.animeButton}
           />
           <img
-          className='manga-button'
+            className='manga-button'
             src='../../public/manga-button.png'
             onClick={this.mangaButton}
           />
           <img
             className='search-button'
-            src='../../public/search-button1.jpg'
+            src='../../public/search-button.jpg'
             onClick={this.formOpen}
             name='searchForm'
           />
