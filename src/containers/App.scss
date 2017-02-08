@@ -45,23 +45,24 @@
 
 .anime-button {
   width: 15%;
-  float: left;
   margin-left: 10%;
 }
 
 .manga-button {
-  margin-left: 8%;
+  margin-left: 10%;
 }
 
 .search-button {
   width: 24%;
-  float: right;
   margin-right: 5%;
 }
 
-.league-button {
+.league-button, .steam-button {
   width: 10%;
-  margin-right: 50px;
+}
+
+.gaming-button {
+  margin-left: 25%;
 }
 
 .champion-title {
@@ -69,8 +70,8 @@
 }
 
 .champion-icon {
-  margin-right: 10px;
-  margin-top: 10px;
+  margin-right: 1%;
+  margin-top: 1%;
 }
 
 .league-bg-picture {
@@ -88,24 +89,31 @@
   margin-left: 20px;
 }
 
-.champion-name {
+.champion-spell-name {
+  text-decoration: underline;
+  position: relative;
+  left: 15%;
+}
 
+.all-champion-pictures {
+  padding-left: 5%;
+  padding-top: 2%;
+}
+
+.spell-name {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spell-description {
+  margin-top: 0;
 }
 
 .spell-image {
-  margin-left: 15px;
+  margin-left: 2%;
   width: 10%;
 }
 
 .lore-title {
   text-decoration: underline;
 }
-
-.steam-button {
-  width: 9%;
-}
-
-.gaming-button {
-  margin-left: 100px;
-}
-

@@ -24,7 +24,7 @@ export default class Details extends Component {
     axios.get(`https://anilist.co/api/${this.props.media.series_type}/${this.props.media.id}?access_token=${this.props.clientToken}`)
     .then((response) => {
       this.setState({currentMedia: response.data})
-      console.log(this.state.currentMedia)
+      console.log("currentmedia", this.state.currentMedia)
     })
     : null
   }
@@ -34,7 +34,7 @@ export default class Details extends Component {
   }
 
   render() {
-    console.log(this.props.media)
+    console.log("props media", this.props.media)
     return (
       <div>
         <Modal
@@ -82,35 +82,25 @@ export default class Details extends Component {
             <h2 className='champion-title'>{this.props.media.name} {this.props.media.title}</h2>
             <i className='champion-blurb' dangerouslySetInnerHTML={{__html: this.props.media.blurb}}></i>
             <br/>
+            <div>
+              <p>Attack: <strong>{this.props.media.info.attack}</strong></p>
+              <p>Defense: <strong>{this.props.media.info.defense}</strong></p>
+              <p>Magic: <strong>{this.props.media.info.magic}</strong></p>
+            </div>
             <br/>
             <div>
+              <h2 className='champion-spell-name'>{this.props.media.name}'s Spells</h2>
               {
                 this.props.media.spells.map((spell, index) => {
+                  const spellInfo = <div><h2 className='spell-name'>{spell.name}</h2><p className='spell-description'><i>{spell.description}</i></p></div>
                   return (
-                    <Tooltip key={index} placement='bottom' overlay={spell.description}>
-                      <img
-                        className='spell-image'
-                        src={`http://ddragon.leagueoflegends.com/cdn/6.24.1/img/spell/${spell.image.full}`}
-                      />
+                    <Tooltip key={index} placement='bottom' overlay={spellInfo}>
+                      <img className='spell-image' src={`http://ddragon.leagueoflegends.com/cdn/6.24.1/img/spell/${spell.image.full}`} />
                     </Tooltip>
                   )
                 })
               }
             </div>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
             <h3 className='lore-title'>Champion Lore </h3>
             <span dangerouslySetInnerHTML={{__html: this.props.media.lore}}></span>
           </div>

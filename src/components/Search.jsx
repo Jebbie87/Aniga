@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Modal from 'react-modal'
 import axios from 'axios'
-// import { Creatable } from 'react-select'
+import FontAwesome from 'react-fontawesome'
 import Select from 'react-select'
 
 export default class Search extends Component {
@@ -49,6 +49,12 @@ export default class Search extends Component {
         onRequestClose={this.closeModal.bind(this, 'searchForm')}
         contentLabel="Search Form"
       >
+        <FontAwesome
+          className='details-close-button'
+          name='times'
+          size='3x'
+          onClick={this.closeModal.bind(this, 'searchForm')}
+        />
         <form onSubmit={this.handleSubmit}>
           <label>Media:
             <select value={this.state.media} onChange={this.handleChange} name='media'>

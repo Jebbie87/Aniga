@@ -12,7 +12,7 @@ export default class Aniga extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      anime: false,
+      anime: true,
       manga: false,
       registerForm: false,
       loginForm: false,
@@ -74,16 +74,18 @@ export default class Aniga extends Component {
         {/*<button onClick={this.formOpen} name="loginForm">Login</button>
         <button onClick={this.formOpen} name="registerForm">Register</button>*/}
         <div>
-          <img
+          {this.state.manga ? <img
             className='anime-button'
             src='../../public/anime-button.jpg'
             onClick={this.animeButton}
-          />
-          <img
+          /> : null
+          }
+          {this.state.anime ? <img
             className='manga-button'
             src='../../public/manga-button.png'
             onClick={this.mangaButton}
-          />
+          /> : null
+          }
           <img
             className='search-button'
             src='../../public/search-button.jpg'

@@ -39,7 +39,7 @@ export default class League extends Component {
   render() {
     const imageBaseURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/'
     return (
-      <div>
+      <div className='all-champion-pictures'>
         {
           this.state.champions.map((champion, index) => {
             return (
