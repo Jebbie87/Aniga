@@ -13,7 +13,7 @@ export default class Aniga extends Component {
     super(props)
     this.state = {
       anime: true,
-      manga: false,
+      manga: true,
       registerForm: false,
       loginForm: false,
       searchForm: false,
@@ -37,6 +37,11 @@ export default class Aniga extends Component {
     .catch((error) => {
       console.log(error)
     })
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    this.setState({searched: nextState.searched})
+    return true
   }
 
   animeButton = () => {

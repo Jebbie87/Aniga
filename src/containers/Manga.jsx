@@ -14,7 +14,7 @@ export default class Manga extends Component {
   }
 
   componentDidMount() {
-    axios.get(`https://anilist.co/api/browse/manga?access_token=${this.props.clientToken}`, {
+    this.props.clientToken ? axios.get(`https://anilist.co/api/browse/manga?access_token=${this.props.clientToken}`, {
       params: {
         genre: 'Comedy'
       }
@@ -22,6 +22,7 @@ export default class Manga extends Component {
     .then((response) => {
       this.setState({manga: response.data})
     })
+    : null
   }
 
   clickedManga(manga) {

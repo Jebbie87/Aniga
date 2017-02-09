@@ -11,6 +11,8 @@ export default class Details extends Component {
     this.state = {
       type: '',
       heroLevel: 0,
+      lowLevelError: false,
+      highLevelError: false,
       currentMedia: {},
       isMouseInside: false,
     }
@@ -35,9 +37,24 @@ export default class Details extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({
-      heroLevel: Number(event.target.value)
-    })
+    console.log(Number(event.target.value) === 21 ? 'hello' : 'world')
+    if (Number(event.target.value) < 0) {
+      this.setState({
+        lowLevelError: true,
+        heroLevel: 0
+      })
+    } else if (Number(event.target.value) > 20) {
+      this.setState({
+        highLevelError: true,
+        heroLevel: 20
+      })
+    } else {
+      this.setState({
+        lowLevelError: false,
+        highLevelError: false,
+        heroLevel: Number(event.target.value)
+      })
+    }
   }
 
   render() {
@@ -91,19 +108,19 @@ export default class Details extends Component {
             <br/>
             <div>
                 <h2 className='stats-title'>{this.props.media.name}'s Stats</h2>
-              <table>
-                <tbody className='champion-stats'>
-                  <tr className='attribute'>
+              <table className='champion-stats'>
+                <tbody>
+                  <tr>
                     <td>Armor: <strong>{Math.round(this.props.media.stats.armor + (this.state.heroLevel * this.props.media.stats.armorperlevel))}</strong></td>
-                    <td>Attack Damage: <strong>{Math.round(this.props.media.stats.attackdamage + (this.state.heroLevel * this.props.media.stats.attackdamageperlevel))}</strong></td>
+                    <td>Damage: <strong>{Math.round(this.props.media.stats.attackdamage + (this.state.heroLevel * this.props.media.stats.attackdamageperlevel))}</strong></td>
                     <td>Attack Speed: <strong>{Math.round(this.props.media.stats.attackspeedoffset + (this.state.heroLevel * this.props.media.stats.attackspeedperlevel))}</strong></td>
                   </tr>
-                  <tr className='pool'>
+                  <tr>
                     <td>Crit: <strong>{Math.round(this.props.media.stats.crit + (this.state.heroLevel * this.props.media.stats.critperlevel))}</strong></td>
                     <td>HP: <strong>{Math.round(this.props.media.stats.hp + (this.state.heroLevel * this.props.media.stats.hpperlevel))}</strong></td>
                     <td>MP: <strong>{Math.round(this.props.media.stats.mp + (this.state.heroLevel * this.props.media.stats.mpperlevel))}</strong></td>
                   </tr>
-                  <tr className='regen'>
+                  <tr>
                     <td>HP Regen: <strong>{Math.round(this.props.media.stats.hpregen + (this.state.heroLevel * this.props.media.stats.hpregenperlevel))}</strong></td>
                     <td>MP Regen: <strong>{Math.round(this.props.media.stats.mpregen + (this.state.heroLevel * this.props.media.stats.mpregenperlevel))}</strong></td>
                     <td>Spell Block: <strong>{Math.round(this.props.media.stats.spellblock + (this.state.heroLevel * this.props.media.stats.spellblockperlevel))}</strong></td>
@@ -111,6 +128,7 @@ export default class Details extends Component {
                 </tbody>
               </table>
               <label className='level-box'>Hero level: <input type='text' name='heroLevel' onChange={this.handleChange}/></label>
+              {this.state.lowLevelError ? <p className='error-message'>Lowest hero level is 0</p> : this.state.highLevelError ? <p className='error-message'>Max hero level is 20</p> : false}
             </div>
             <br/>
             <div>
@@ -126,6 +144,7 @@ export default class Details extends Component {
                 })
               }
             </div>
+            <br/>
             <h3 className='lore-title'>Champion Lore </h3>
             <span dangerouslySetInnerHTML={{__html: this.props.media.lore}}></span>
           </div>

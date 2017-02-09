@@ -85,6 +85,7 @@
 }
 
 .champion-title {
+  text-decoration: underline;
   text-align: center;
 }
 
@@ -141,6 +142,7 @@
 }
 
 .stats-title {
+  text-decoration: underline;
   margin-top: 1%;
   margin-left: 70%;
 }
@@ -149,19 +151,26 @@
   padding-left: 15%;
 }
 
-td:nth-child(1) {
-  padding-left: 2%;
-}
-
 td:nth-child(2) {
-  padding-left: 10%;
+  padding-right: 2%;
+  padding-left: 6%;
 }
 
 td:nth-child(3) {
-  padding-left: 8%;
+  position: relative;
+  right: 1%;
+  padding-left: 6%;
 }
 
 .champion-stats {
   position: relative;
-  left: 4%;
+  left: 10%;
+  max-width: 410px;
+}
+
+.error-message {
+  color: red;
+  float: right;
+  margin-top: 0.2%;
+  padding-right: 18%;
 }
