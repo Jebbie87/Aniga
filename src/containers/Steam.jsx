@@ -38,7 +38,7 @@ export default class Steam extends Component {
     return (
       <div>
         <h1>Steam part of the website</h1>
-        <h1> This page does not work yet. Can't make API call to steam </h1>
+        <h1> This feature has not yet been implemented</h1>
       </div>
     )
   }

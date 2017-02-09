@@ -13,7 +13,7 @@ export default class Test extends Component {
   }
 
   componentWillMount() {
-    axios.get(`https://anilist.co/api/browse/anime?access_token=${this.props.clientToken}`, {
+    this.props.clientToken ? axios.get(`https://anilist.co/api/browse/anime?access_token=${this.props.clientToken}`, {
       params: {
         genres: 'Comedy',
         year: "2016"
@@ -21,7 +21,7 @@ export default class Test extends Component {
     })
     .then((response) => {
       this.setState({anime: response.data})
-    })
+    }) : null
   }
 
   clickedAnime(anime) {

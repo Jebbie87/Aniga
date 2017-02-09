@@ -10,6 +10,7 @@ export default class Details extends Component {
     super(props)
     this.state = {
       type: '',
+      heroLevel: 0,
       currentMedia: {},
       isMouseInside: false,
     }
@@ -33,6 +34,12 @@ export default class Details extends Component {
     this.props.close(name)
   }
 
+  handleChange = (event) => {
+    this.setState({
+      heroLevel: Number(event.target.value)
+    })
+  }
+
   render() {
     console.log("props media", this.props.media)
     return (
@@ -41,6 +48,7 @@ export default class Details extends Component {
           isOpen={this.props.open}
           onRequestClose={this.closeModal.bind(this, 'imageClicked')}
           contentLabel='mediaDetails'
+          className='modal-class'
         >
         <FontAwesome
           className='details-close-button'
@@ -52,7 +60,7 @@ export default class Details extends Component {
           <div>
             <img className='anime-manga-poster' src={this.props.media.image_url_lge} />
             <div className='anime-manga'>
-              <p><strong>Title: </strong> {this.state.currentMedia.title_english}</p>
+              <p><strong>Title: </strong>{this.state.currentMedia.title_english}</p>
               <p><strong>Type: </strong>{this.state.currentMedia.type}</p>
               <p><strong>Description: </strong><i dangerouslySetInnerHTML={{__html: this.state.currentMedia.description}} /></p>
               {
@@ -69,7 +77,6 @@ export default class Details extends Component {
                   </iframe>
                 </div>
                 : null
-
               }
             </div>
           </div>
@@ -83,9 +90,27 @@ export default class Details extends Component {
             <i className='champion-blurb' dangerouslySetInnerHTML={{__html: this.props.media.blurb}}></i>
             <br/>
             <div>
-              <p>Attack: <strong>{this.props.media.info.attack}</strong></p>
-              <p>Defense: <strong>{this.props.media.info.defense}</strong></p>
-              <p>Magic: <strong>{this.props.media.info.magic}</strong></p>
+                <h2 className='stats-title'>{this.props.media.name}'s Stats</h2>
+              <table>
+                <tbody className='champion-stats'>
+                  <tr className='attribute'>
+                    <td>Armor: <strong>{Math.round(this.props.media.stats.armor + (this.state.heroLevel * this.props.media.stats.armorperlevel))}</strong></td>
+                    <td>Attack Damage: <strong>{Math.round(this.props.media.stats.attackdamage + (this.state.heroLevel * this.props.media.stats.attackdamageperlevel))}</strong></td>
+                    <td>Attack Speed: <strong>{Math.round(this.props.media.stats.attackspeedoffset + (this.state.heroLevel * this.props.media.stats.attackspeedperlevel))}</strong></td>
+                  </tr>
+                  <tr className='pool'>
+                    <td>Crit: <strong>{Math.round(this.props.media.stats.crit + (this.state.heroLevel * this.props.media.stats.critperlevel))}</strong></td>
+                    <td>HP: <strong>{Math.round(this.props.media.stats.hp + (this.state.heroLevel * this.props.media.stats.hpperlevel))}</strong></td>
+                    <td>MP: <strong>{Math.round(this.props.media.stats.mp + (this.state.heroLevel * this.props.media.stats.mpperlevel))}</strong></td>
+                  </tr>
+                  <tr className='regen'>
+                    <td>HP Regen: <strong>{Math.round(this.props.media.stats.hpregen + (this.state.heroLevel * this.props.media.stats.hpregenperlevel))}</strong></td>
+                    <td>MP Regen: <strong>{Math.round(this.props.media.stats.mpregen + (this.state.heroLevel * this.props.media.stats.mpregenperlevel))}</strong></td>
+                    <td>Spell Block: <strong>{Math.round(this.props.media.stats.spellblock + (this.state.heroLevel * this.props.media.stats.spellblockperlevel))}</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+              <label className='level-box'>Hero level: <input type='text' name='heroLevel' onChange={this.handleChange}/></label>
             </div>
             <br/>
             <div>

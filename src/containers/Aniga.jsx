@@ -25,7 +25,7 @@ export default class Aniga extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     axios.post('https://anilist.co/api/auth/access_token', {
       grant_type: 'client_credentials',
       client_id: process.env.ANILIST_API_KEY_CLIENT_ID,
