@@ -1,0 +1,21 @@
+.box {
+  display: block
+}
+
+.box1 {
+  display: block
+}
+
+.box2 {
+  display: block
+}
+
+.box3 {
+  display: block
+}
+
+.container {
+  display: flex;
+  flex-direction: column-reverse;
+}
+

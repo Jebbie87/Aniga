@@ -16,7 +16,7 @@ export default class App extends Component {
         league: true,
         steam: false,
       },
-      url: 'http://images4.fanpop.com/image/photos/19600000/Bleach-Chibi-Banner-bleach-chibis-19651855-800-100.jpg',
+      url: 'http://1.bp.blogspot.com/-6WLbi2c-s0E/VzxCaOau7eI/AAAAAAAADNA/1VdLvLNCh_whh2nj7lLx8plz4Xu-8MANwCK4B/s1600/Banner%2B1st%2Bconcept.jpg',
       title: 'Welcome to Aniga',
       // url: 'http://big-rooster.com/wp-content/uploads/2016/05/cropped-i_love_gaming_banner_by_drshmeb-d6p7hsq.jpg',
       // title: 'Welcome to the gaming part of the website',
@@ -35,7 +35,7 @@ export default class App extends Component {
         break
       case 'anime':
         this.setState({
-          url: 'https://theglorywhole.files.wordpress.com/2012/02/banner.jpg'
+          url: 'http://images4.fanpop.com/image/photos/19600000/Bleach-Chibi-Banner-bleach-chibis-19651855-800-100.jpg'
         })
         break
       case 'manga':

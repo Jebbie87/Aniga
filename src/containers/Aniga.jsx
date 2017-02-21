@@ -39,11 +39,6 @@ export default class Aniga extends Component {
     })
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    this.setState({searched: nextState.searched})
-    return true
-  }
-
   animeButton = () => {
     this.props.media('anime')
     this.setState({anime: true, manga: false,})

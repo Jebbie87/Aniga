@@ -4,7 +4,7 @@
 
 .App-logo {
   height: 80px;
-  width: 100%;
+  width: 70%;
 }
 
 .App-header {
@@ -111,8 +111,15 @@
 
 .champion-spell-name {
   text-decoration: underline;
+  text-align: center;
+}
+
+.champion-spell-name-hint {
+  margin-top: 0;
   position: relative;
-  left: 15%;
+  bottom: 15px;
+  font-size: 13px;
+  text-align: center;
 }
 
 .all-champion-pictures {
@@ -153,7 +160,7 @@
 
 td:nth-child(2) {
   padding-right: 2%;
-  padding-left: 6%;
+  padding-left: 8%;
 }
 
 td:nth-child(3) {
@@ -165,7 +172,8 @@ td:nth-child(3) {
 .champion-stats {
   position: relative;
   left: 10%;
-  max-width: 410px;
+  width: 420px;
+  display: flex;
 }
 
 .error-message {
@@ -173,4 +181,15 @@ td:nth-child(3) {
   float: right;
   margin-top: 0.2%;
   padding-right: 18%;
+}
+
+.league-title {
+  text-align: center;
+}
+
+.league-title-hint {
+  text-align: center;
+  margin-top: 0;
+  position: relative;
+  bottom: 15px;
 }

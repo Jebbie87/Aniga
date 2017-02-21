@@ -4,3 +4,5 @@ export const fillForm = (form) => {
     form
   }
 }
+
+action fires to reducers

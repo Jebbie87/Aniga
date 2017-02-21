@@ -40,8 +40,8 @@ export default class League extends Component {
     const imageBaseURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/'
     return (
       <div className='all-champion-pictures'>
-      <h1> League of Legends Champions </h1>
-      <h3> Click on an image to begin </h3>
+      <h1 className='league-title'> League of Legends Champions </h1>
+      <h3 className='league-title-hint'> Click on an image to begin </h3>
         {
           this.state.champions.map((champion, index) => {
             return (

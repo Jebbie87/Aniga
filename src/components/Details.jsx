@@ -89,9 +89,11 @@ export default class Details extends Component {
                 this.state.currentMedia.series_type === 'anime' ?
                 <div>
                   <p><strong>Total Episodes: </strong>{this.state.currentMedia.total_episodes}</p>
-                  <iframe width="560" height="315"
-                    src={`https://www.youtube.com/embed/${this.state.currentMedia.youtube_id}`}>
-                  </iframe>
+                  {this.state.currentMedia.youtube_id !== null ?
+                    <iframe width="560" height="315"
+                      src={`https://www.youtube.com/embed/${this.state.currentMedia.youtube_id}`}>
+                    </iframe> : null
+                  }
                 </div>
                 : null
               }
@@ -133,6 +135,7 @@ export default class Details extends Component {
             <br/>
             <div>
               <h2 className='champion-spell-name'>{this.props.media.name}'s Spells</h2>
+              <p className='champion-spell-name-hint'><i>(Hover over an icon to see the spell description)</i></p>
               {
                 this.props.media.spells.map((spell, index) => {
                   const spellInfo = <div><h2 className='spell-name'>{spell.name}</h2><p className='spell-description'><i>{spell.description}</i></p></div>

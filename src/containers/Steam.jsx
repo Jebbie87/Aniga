@@ -9,7 +9,7 @@ export default class Steam extends Component {
     }
   }
 
-  // componentWillMount() {
+  componentWillMount() {
   //   axios({
   //     method: 'get',
   //     url: 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/',
@@ -25,14 +25,14 @@ export default class Steam extends Component {
   //   .catch((error) => {
   //     console.log(error)
   //   })
-  //   // axios.get(`http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=${this.state.apiKey}&steamid=76561197960435530&relationship=friend`)
-  //   // .then((response) => {
-  //   //   console.log(response)
-  //   // })
-  //   // .catch((error) => {
-  //   //   console.log(error)
-  //   // })
-  // }
+    axios.get(`http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=${this.state.apiKey}&steamid=76561197960435530&relationship=friend`)
+    .then((response) => {
+      console.log(response)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
 
   render() {
     return (
